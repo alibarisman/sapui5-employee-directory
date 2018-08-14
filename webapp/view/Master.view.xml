@@ -1,0 +1,30 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="testapp.controller.Master"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<pages>
+			<Page 
+				title="{i18n>masterHeader}">
+				<subHeader>
+					<Toolbar
+						id="searchBar33343">
+						<SearchField
+							search="handleSearch"
+							placeholder="Search Employee"
+							width="100%">
+						</SearchField>
+					</Toolbar>
+				</subHeader>
+		        <List
+		            id="employeeList"
+		            items="{/employess}"
+		            mode="SingleSelectMaster"
+		            select="handleListSelect">
+		            <StandardListItem
+		            	icon="{img}"
+		                title="{name}"
+		                description="{position}-{department} Department" />
+		        </List>
+		    </Page>
+		</pages>
+	</App>
+</mvc:View>

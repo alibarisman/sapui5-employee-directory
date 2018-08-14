@@ -1,0 +1,95 @@
+<mvc:View 
+	xmlns:core="sap.ui.core" 
+	xmlns:f="sap.ui.layout.form"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" 
+	controllerName="testapp.controller.Detail"
+	xmlns:gmaps="openui5.googlemaps"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<pages>
+			<Page 
+				title="{i18n>detailHeader}"
+				enableScrolling="true">
+				<content>
+					<ObjectHeader
+						title="{name}"
+						number="{
+							parts:[{path:'mobile'}],
+							type: 'sap.ui.model.type.Currency',
+							formatOptions: {showMeasure: false}
+						}"
+						numberUnit="{CurrencyCode}" >
+						<attributes>
+							<ObjectAttribute text="{position}"/>
+						</attributes>
+						<statuses>
+							<ObjectStatus text="{email}"/>
+						</statuses>
+					</ObjectHeader>
+					<IconTabBar
+						id="iconTabBar"
+						class="sapUiResponsiveContentPadding"
+						select="onTabSelect"
+						selectedKey="{view>/selectedTabKey}">
+						<items>
+							<IconTabFilter id="hobbiesTab" icon="sap-icon://hint" text="Informations" key="Hobbies">
+								<VBox>
+									<f:SimpleForm id="SimpleFormProcessorInfo"
+										editable="false"
+										layout="ResponsiveGridLayout"
+										title="Employee Details"
+										labelSpanL="3"
+										labelSpanM="3"
+										emptySpanL="4"
+										emptySpanM="4"
+										columnsL="2"
+										columnsM="2">
+										<f:content>
+											<core:Title text="Contact Information" />
+											<Label text="Name" />
+											<Text text="{name}"/>
+											<Label text="Email" />
+											<Link text="{email}" press="_onHandleMailPress"/>
+											<Label text="Mobile" />
+											<Link text="{mobile}" press="_onHandleTelephonePress"/>
+											<Label text="Position" />
+											<Text text="{position}"/>
+											<Label text="Department" />
+											<Text text="{department}"/>
+											<core:Title text="Photo" />
+											<Image src="{path:'img'}" width="50%" height="50%" />
+										</f:content>
+									</f:SimpleForm>
+								</VBox>
+							</IconTabFilter>
+							<IconTabFilter id="notesTab" icon="sap-icon://functional-location" text="Address" key="Notes">
+								<f:SimpleForm
+									minWidth="1024"
+									maxContainerCols="2"
+									layout="ResponsiveGridLayout" >
+									<f:title>
+										<core:Title text="Address" />
+									</f:title>
+									<Label text="Home Address"/>
+									<Text text="{homeAddress}"/>
+									<Label text="City"/>
+									<Text text="{city}"/>
+									<Label text="Postal Code"/>
+									<Text text="{postalcode}"/>
+								</f:SimpleForm>
+							</IconTabFilter>
+							<IconTabFilter id="infoTab" icon="sap-icon://map-2" text="Location" key="Info">
+								<gmaps:Map height="400px" zoom="12" lat="{lat}" lng="{lng}" apiKey="AIzaSyD6EmAk92gaGzjYVYU-ebd_BK-rgejSoZ0">
+					                <gmaps:markers>
+					                    <gmaps:Marker lat="{lat}" lng="{lng}" info="{parts:[{path:'homeAddress'},{path:'city'},{path:'postalcode'}], formatter:'.formatter.info'}" icon="http://maps.google.com/mapfiles/kml/pal5/icon14.png"></gmaps:Marker>
+					                </gmaps:markers>
+					            </gmaps:Map>
+							</IconTabFilter>
+						</items>
+					</IconTabBar>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>
