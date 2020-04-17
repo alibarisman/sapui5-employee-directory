@@ -10,7 +10,9 @@
 		<pages>
 			<Page 
 				title="{i18n>detailHeader}"
-				enableScrolling="true">
+				enableScrolling="true"
+			      	showNavButton="{= ${device>/system/phone} ? true : false}"
+				navButtonPress="onBack">
 				<content>
 					<ObjectHeader
 						title="{name}"
